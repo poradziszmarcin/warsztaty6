@@ -1,0 +1,46 @@
+{% extends "@App/Main/main.html.twig" %}
+{% block title %}Zadania - {{ task.name }}{% endblock %}
+{% block div %}
+
+    <a href="{{ path("app_task_delete",{"id":task.id}) }}">usun</a> //
+
+    {% if task.done == 0 %}
+        <a href="{{ path("app_task_setdone",{"id":task.id}) }}">oznacz jako zakończone</a> //
+        <a href="{{ path("app_task_edit",{"id":task.id}) }}">edytuj</a> //
+
+    {% endif %}
+
+    <br>
+    <p>Nazwa: {{ task.name }}</p>
+    <p>Opis: {{ task.description }}</p>
+    <p>Data: {{ task.date|date('d-m-Y') }}</p>
+
+    {% if task.category == null %}
+        <p>Kategoria: brak </p>
+    {% else %}
+        <p>Kategoria: {{ task.category.name }}</p>
+    {% endif %}
+
+    {% if task.done == 0 %}
+        <p>Status : Nieukończone</p>
+    {% else %}
+        <p>Status : Zakończone</p>
+    {% endif %}
+    <hr>
+    <a href="{{ path ("app_comment_add",{"id":task.id}) }}">dodaj komentarz</a>
+    <br>
+    <br>
+    {% for comment in comments %}
+    <div class="task">
+      <p>  {{ comment.text }}</p>
+        <a href="{{ path('app_comment_delete',
+    {'id': comment.id, 'tid': task.id}) }}">usun
+        </a>
+        <br>
+      </div>
+        <br>
+    {% else %}
+        <p>nie ma jeszcze komentarzy</p>
+    {% endfor %}
+
+{% endblock %}

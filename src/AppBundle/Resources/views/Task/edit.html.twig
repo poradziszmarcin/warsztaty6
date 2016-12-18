@@ -1,0 +1,15 @@
+{% extends '@App/Main/main.html.twig' %}
+
+{% block title %}Zadanie - Edycja{% endblock %}
+
+
+    {% block div %}
+
+        <h3>Edycja zadania</h3>
+        {{ form_start(form) }}
+        {{ form_widget(form) }}
+        <input type="submit"/>
+        {{ form_end(form) }}
+    {% endblock %}
+
+

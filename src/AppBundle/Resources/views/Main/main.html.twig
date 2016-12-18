@@ -1,0 +1,41 @@
+
+    <link href="{{ asset('bundles/framework/css/body.css') }}" type="text/css" rel="stylesheet" />
+
+<title>{% block title %}{% endblock %}</title>
+{% block body %}
+    <div class="login">
+    {% if user == true %}
+        <div>
+            <ul>
+                <li style="display: inline-block"> {{ user.username }}&nbsp;</li>
+
+                <li style="display: inline-block"><a href="{{ path('app_task_showall') }}">zadania&nbsp;</a> &nbsp;</li>
+                <li style="display: inline-block"><a href="{{ path('app_category_show') }}">kategorie&nbsp;</a>&nbsp;
+                </li>
+                <li style="display: inline-block"><a href="{{ path('app_main_profile') }}">profil&nbsp;</a> &nbsp;</li>
+                <li style="display: inline-block"><a href="/logout">wyloguj sie</a></li>
+            </ul>
+            <hr>
+            <hr>
+        </div>
+        <div style="width: 80%; margin-left: 10%;">
+            {% block div %}
+
+
+
+            {% endblock %}
+        </div>
+
+    {% else %}
+        <h3>Dostęp tylko dla zalogowanych</h3>
+        <p>Nie jesteś zalogowany</p>
+        <p><a href="/login">Zaloguj się</a> lub <a href="/register">utwórz konto</a></p>
+    {% endif %}
+    </div>
+{% endblock %}
+
+
+
+
+
+

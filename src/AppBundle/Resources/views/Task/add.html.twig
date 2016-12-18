@@ -1,0 +1,10 @@
+{% extends "@App/Main/main.html.twig" %}
+{% block title %}Zadania - dodawanie{% endblock %}
+{% block div %}
+
+    <h3>Tworzenie zadania</h3>
+    {{ form_start(form) }}
+    {{ form_widget(form) }}
+    <input type="submit"/>
+    {{ form_end(form) }}
+{% endblock %}

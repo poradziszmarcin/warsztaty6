@@ -1,0 +1,17 @@
+{% extends "AppBundle:Main:main.html.twig" %}
+{% block title %}profil{% endblock %}
+
+{% block div %}
+
+
+
+<ul>
+    <li style="display: inline-block"> <a href="/profile/edit" target="profile">edycja profilu</a> </li>
+    <li style="display: inline-block"> <a href="/profile/change-password" target="profile">zmiana hasła</a> </li>
+
+</ul>
+
+<iframe frameborder="0" width="100%" height="150%" src="http://127.0.0.1:8000/profile/" name="profile">
+
+</iframe>
+{% endblock %}

@@ -1,0 +1,53 @@
+{% extends "@App/Main/main.html.twig" %}
+{% block title %}Zadania / {{ cat.name }}{% endblock %}
+{% block div %}
+
+    <p>Zadania w kategorii: <i><b>{{ cat.name }}</b></i>:</p>
+    <ul>
+        <li><a href="{{ path("app_category_showdone",{"cat":cat.id, "id":user.id}) }}">Zakończone</a></li>
+        <li><a href="{{ path("app_category_showundone",{"cat":cat.id, "id":user.id}) }}">Niedokończone</a></li>
+        <li><a href="{{ path("app_category_showtask",{"cat":cat.id}) }}">Wszystkie</a></li>
+        <li><a href="{{ path("app_task_add") }}"><b>Dodaj Zadanie</b></a></li>
+    </ul>
+
+    <hr>
+<form method="POST" action="{{ path("app_task_multidelete") }}">
+    {% for task in tasks %}
+        <br>
+        <div class="task">
+
+            <p>Nazwa :<a href="{{ path("app_task_show",{"id":task.id}) }}">{{ task.name }}</a></p>
+
+            {% if task.category == null %} }
+                <p>Kategoria : Brak</p>
+            {% else %}
+                <p>Kategoria : {{ task.category.name }}</p>
+            {% endif %}
+
+
+            {% if task.date < today %}
+                <p style="color: red;">Data: <b>{{ task.date|date('d-m-Y') }}</b></p>
+
+            {% else %}
+                <p>Data: {{ task.date|date('d-m-Y') }}</p>
+            {% endif %}
+            {% if task.done == 0 %}
+                <p style="color: red">Status : Nieukończone</p>
+            {% else %}
+                <p style="color: green">Status : Zakończone</p>
+
+            {% endif %}
+            <p>Liczba komentarzy: {{ task.comments|length }}</p>
+            <input type="checkbox" name="{{ task.name }}" value="{{ task.id }}">usuń
+            <br>
+        </div>
+
+    {% else %}
+        <p>Nie znaleziono zadań</p>
+    {% endfor %}
+    {% if tasks == true %}
+        <br>
+        <input type="submit" value="usun zaznaczone">
+        <br>
+    {% endif %}
+{% endblock %}

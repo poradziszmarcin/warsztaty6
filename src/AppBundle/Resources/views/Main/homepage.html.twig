@@ -1,0 +1,14 @@
+{% extends "@App/Main/main.html.twig" %}
+{% block title %}Task Planner{% endblock %}
+
+    {% block div %}
+        <div style="width: 60%; margin-left: 20% ; margin-top: 10%">
+            <h3>Witaj {{ user.username }}</h3>
+
+            <h3>Masz {{ tasks }} zadania w tym:</h3>
+            <h4>{{ undone }} - niezrealizowane</h4>
+            <h4>{{ done }} - zrealizowane</h4>
+            <p>Aby dowiedzieć się wiecej przejdz do kategii w menu</p>
+        </div>
+
+            {% endblock %}
